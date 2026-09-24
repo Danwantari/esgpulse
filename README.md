@@ -94,6 +94,21 @@ http://localhost:3001
 
 ---
 
+## Vercel Deployment
+
+This project is optimized for deployment on [Vercel](https://vercel.com/):
+
+1. **Import Repository**:
+   - Go to [vercel.com/new](https://vercel.com/new)
+   - Select your GitHub repository: `Danwantari/esgpulse`
+2. **Framework Preset**: Next.js (automatically detected)
+3. **Build Command**: `next build` (default)
+4. **Output Directory**: `.next` (default)
+5. **Install Command**: `npm install` (default)
+6. Click **Deploy**. Vercel will build and assign an instant production URL with automatic SSL.
+
+---
+
 ## Resume Bullets Produced by This Project
 
 1. *"Designed ESGPulse — an enterprise ESG data aggregation and compliance tracking platform; mapped 133 GRI disclosures, 41 SASB technology standards, and 24 TCFD requirements into a compliance heatmap showing gap status, responsible ownership, and data collection workflows."*
