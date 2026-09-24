@@ -1,0 +1,247 @@
+export interface DataCollectionRequest {
+  id: string;
+  framework: 'GRI' | 'SASB' | 'TCFD';
+  metricCode: string;
+  metricName: string;
+  pillar: 'Environmental' | 'Social' | 'Governance';
+  assignedTo: string;
+  assignedRole: string;
+  businessUnit: 'India Operations' | 'UK Operations' | 'Southeast Asia' | 'All BUs (Consolidated)';
+  status: 'Pending' | 'In Progress' | 'Submitted' | 'Approved' | 'Overdue';
+  reportingPeriod: string;
+  dueDate: string;
+  daysRemaining: number;
+  unitOfMeasure: string;
+  description: string;
+  methodologyRequirement: string;
+  historicalValue: string;
+  expectedRange: string;
+  submittedValue?: string;
+  supportingDocument?: string;
+  methodologyNotes?: string;
+  reviewComment?: string;
+  isOutlier?: boolean;
+}
+
+export const INITIAL_COLLECTION_REQUESTS: DataCollectionRequest[] = [
+  {
+    id: 'REQ-2026-081',
+    framework: 'GRI',
+    metricCode: 'GRI 305-1',
+    metricName: 'Diesel Generator Backup Fuel Consumption (Scope 1)',
+    pillar: 'Environmental',
+    assignedTo: 'Vikramaditya Sharma',
+    assignedRole: 'Senior Facilities Lead, Pune & Bengaluru',
+    businessUnit: 'India Operations',
+    status: 'Submitted',
+    reportingPeriod: 'Q1-Q2 FY 2025-26',
+    dueDate: '2026-09-30',
+    daysRemaining: 6,
+    unitOfMeasure: 'Liters of HSD Diesel (tCO2e)',
+    description: 'Direct fuel consumed by stationary backup power generators across campuses 1, 2, and 4 during municipal grid shedding events.',
+    methodologyRequirement: 'CEA GHG emission factor v19.0 (2.68 kg CO2e / liter diesel). Log books and fuel delivery challans required.',
+    historicalValue: '128,400 Liters (344 tCO2e)',
+    expectedRange: '100,000 - 135,000 Liters',
+    submittedValue: '112,650 Liters (301.9 tCO2e)',
+    supportingDocument: 'HPCL_Diesel_Receipts_Q1Q2_Signed.pdf',
+    methodologyNotes: 'Calculated using meter loggers calibrated on April 15, 2026. Solar rooftop reduced generator runtime by 14%.',
+    reviewComment: 'Data consistent with grid uptime logs. Outlier check passed.',
+    isOutlier: false
+  },
+  {
+    id: 'REQ-2026-082',
+    framework: 'SASB',
+    metricCode: 'TC-SI-130a.1',
+    metricName: 'Data Center Power Consumption & Renewable Energy Match',
+    pillar: 'Environmental',
+    assignedTo: 'Marcus Sterling',
+    assignedRole: 'Principal Cloud Systems Architect',
+    businessUnit: 'UK Operations',
+    status: 'In Progress',
+    reportingPeriod: 'FY 2025-26 Year-to-Date',
+    dueDate: '2026-10-15',
+    daysRemaining: 21,
+    unitOfMeasure: 'Megawatt Hours (MWh)',
+    description: 'Total electricity consumption across London colocation facility including PUE thermal efficiency ratio and REGO green tariff percentage.',
+    methodologyRequirement: 'GHG Protocol Scope 2 Market-Based accounting. REGO (Renewable Energy Guarantees of Origin) certificates must be attached.',
+    historicalValue: '8,650 MWh (60% renewable)',
+    expectedRange: '8,200 - 9,100 MWh',
+    isOutlier: false
+  },
+  {
+    id: 'REQ-2026-083',
+    framework: 'GRI',
+    metricCode: 'GRI 306-3',
+    metricName: 'Decommissioned E-Waste Weight & Certified Recycler Manifests',
+    pillar: 'Environmental',
+    assignedTo: 'Nurul Huda',
+    assignedRole: 'IT Asset Operations Manager',
+    businessUnit: 'Southeast Asia',
+    status: 'Pending',
+    reportingPeriod: 'H1 FY 2025-26',
+    dueDate: '2026-10-20',
+    daysRemaining: 26,
+    unitOfMeasure: 'Metric Tons (MT)',
+    description: 'End-of-life laptops, monitors, enterprise switches, and server blades handed over to certified R2/e-Stewards recycling concessionaires.',
+    methodologyRequirement: 'Certified green destruction certificates, weight bridge slips, and hazardous fraction declarations.',
+    historicalValue: '18.4 Metric Tons',
+    expectedRange: '15.0 - 24.0 Metric Tons',
+    isOutlier: false
+  },
+  {
+    id: 'REQ-2026-084',
+    framework: 'TCFD',
+    metricCode: 'TCFD-STR-C',
+    metricName: 'Physical Climate Risk Vulnerability & 100-Year Flood Hydrology',
+    pillar: 'Governance',
+    assignedTo: 'Alistair Vance',
+    assignedRole: 'VP of Business Continuity & Enterprise Risk',
+    businessUnit: 'UK Operations',
+    status: 'Overdue',
+    reportingPeriod: 'FY 2025-26 Scenario Cycle',
+    dueDate: '2026-09-15',
+    daysRemaining: -9,
+    unitOfMeasure: 'Financial Value at Risk (£ GBP / % Revenue)',
+    description: 'Detailed exposure assessment of Docklands data center and corporate hub to sea-level rise storm surges and Thames barrier stress testing.',
+    methodologyRequirement: 'IPCC RCP 4.5 and RCP 8.5 pathways over 2030 and 2050 horizons.',
+    historicalValue: 'Qualitative High-Level Matrix only',
+    expectedRange: '£1.2M - £3.5M asset VaR',
+    isOutlier: true
+  },
+  {
+    id: 'REQ-2026-085',
+    framework: 'GRI',
+    metricCode: 'GRI 405-1',
+    metricName: 'Mid-Year Workforce Diversity Census & Gender Pay Gap Delta',
+    pillar: 'Social',
+    assignedTo: 'Pooja Narang',
+    assignedRole: 'Director of Global People Analytics',
+    businessUnit: 'India Operations',
+    status: 'Submitted',
+    reportingPeriod: 'FY 2025-26 Q2',
+    dueDate: '2026-10-05',
+    daysRemaining: 11,
+    unitOfMeasure: 'Percentage (%) and Adjusted Pay Ratio',
+    description: 'Workforce demographics disaggregated by band, technical role versus support, and median gender pay gap variance across tech bands.',
+    methodologyRequirement: 'UK Equality Act methodology applied across all global operations for consistency.',
+    historicalValue: '38% Women overall, 31% Leadership, 98.2% pay parity',
+    expectedRange: '36% - 42% Women, 97% - 100% pay parity',
+    submittedValue: '38.2% Women overall, 31.4% Leadership, 98.4% pay parity',
+    supportingDocument: 'HR_Demographics_Audit_Q2_FY26.xlsx',
+    methodologyNotes: 'Extracted directly from Workday global census on August 31, 2026. Adjusted for tenure and performance rating.',
+    reviewComment: 'Ready for sustainability manager sign-off.',
+    isOutlier: false
+  },
+  {
+    id: 'REQ-2026-086',
+    framework: 'SASB',
+    metricCode: 'TC-SI-220a.2',
+    metricName: 'User Secondary Data Usage Disclosures & Privacy Opt-Outs',
+    pillar: 'Governance',
+    assignedTo: 'Ananya Deshmukh',
+    assignedRole: 'Lead Privacy Counsel & DPO',
+    businessUnit: 'All BUs (Consolidated)',
+    status: 'Approved',
+    reportingPeriod: 'FY 2025-26 Annual',
+    dueDate: '2026-09-10',
+    daysRemaining: -14,
+    unitOfMeasure: 'Count (Users / Petitions)',
+    description: 'Confirmation of 0 users whose data was monetized or utilized for secondary commercial purposes without explicit opt-in.',
+    methodologyRequirement: 'SOC 2 Type II privacy trust principles and legal compliance attestation.',
+    historicalValue: '0 users',
+    expectedRange: '0 users (Strict Zero Tolerance Policy)',
+    submittedValue: '0 users (0%)',
+    supportingDocument: 'CPO_Annual_Privacy_Attestation_2026.pdf',
+    methodologyNotes: 'Telemetry audit confirmed zero secondary monetization pipelines active in production microservices.',
+    reviewComment: 'Verified by Chief Legal Officer on 2026-09-08. Status: Approved.',
+    isOutlier: false
+  },
+  {
+    id: 'REQ-2026-087',
+    framework: 'GRI',
+    metricCode: 'GRI 303-3',
+    metricName: 'Campus Water Extraction & Sewage Treatment Plant (STP) Recycling Flow',
+    pillar: 'Environmental',
+    assignedTo: 'Karthik Raja',
+    assignedRole: 'Workplace Environmental Engineer',
+    businessUnit: 'India Operations',
+    status: 'In Progress',
+    reportingPeriod: 'H1 FY 2025-26',
+    dueDate: '2026-10-18',
+    daysRemaining: 24,
+    unitOfMeasure: 'Kiloliters (kL) / Liters',
+    description: 'Meter readings of municipal water draw, borewell recharge volumes, and treated effluent reused in cooling towers and gardening.',
+    methodologyRequirement: 'Calibrated electromagnetic flow meter logs with monthly third-party water quality lab tests.',
+    historicalValue: '1,200,000 L consumed, 340,000 L recycled (28.3%)',
+    expectedRange: '1.1M - 1.3M L consumed, 25% - 32% recycled',
+    isOutlier: false
+  },
+  {
+    id: 'REQ-2026-088',
+    framework: 'SASB',
+    metricCode: 'TC-SI-550a.1',
+    metricName: 'Global Cloud Platform Uptime & P1 Customer Incident Downtime Minutes',
+    pillar: 'Governance',
+    assignedTo: 'Tan Wei Ming',
+    assignedRole: 'Global Head of SRE & Infrastructure',
+    businessUnit: 'Southeast Asia',
+    status: 'Submitted',
+    reportingPeriod: 'FY 2025-26 H1',
+    dueDate: '2026-10-02',
+    daysRemaining: 8,
+    unitOfMeasure: 'Percentage (%) Uptime & Minutes',
+    description: 'System availability metrics across multi-tenant production regions with root-cause analysis for any outage exceeding 15 minutes.',
+    methodologyRequirement: 'Synthetics monitoring logs (Datadog/CloudWatch) with customer SLA credit reconciliations.',
+    historicalValue: '99.98% platform uptime, 18 min cumulative downtime',
+    expectedRange: '99.95% - 100.0% uptime',
+    submittedValue: '99.985% uptime, 14.2 min cumulative downtime',
+    supportingDocument: 'SRE_Production_Uptime_H1_FY26.pdf',
+    methodologyNotes: 'Two brief DNS failover incidents resolved within 8 and 6 minutes respectively. Zero SLA breach penalties invoked.',
+    reviewComment: 'Under final quality check before sign-off.',
+    isOutlier: false
+  },
+  {
+    id: 'REQ-2026-089',
+    framework: 'GRI',
+    metricCode: 'GRI 403-9',
+    metricName: 'Work-Related Injury Registry & Lost Time Injury Rate (LTIR)',
+    pillar: 'Social',
+    assignedTo: 'Deepak Varma',
+    assignedRole: 'EHS Compliance Specialist',
+    businessUnit: 'India Operations',
+    status: 'Approved',
+    reportingPeriod: 'H1 FY 2025-26',
+    dueDate: '2026-09-08',
+    daysRemaining: -16,
+    unitOfMeasure: 'LTIR per 1,000,000 man-hours worked',
+    description: 'Full record of OSHA-recordable injuries, lost days, and near-miss occurrences captured in Benchmark Gensuite EHS module.',
+    methodologyRequirement: 'OSHA / ISO 45001 calculation protocol: (Lost Time Injuries x 1,000,000) / Total hours worked.',
+    historicalValue: 'LTIR: 0.12 (Zero fatalities)',
+    expectedRange: '0.00 - 0.25 LTIR',
+    submittedValue: 'LTIR: 0.118 (Zero lost workdays, 2 first-aid cases)',
+    supportingDocument: 'Benchmark_Gensuite_EHS_Audit_H1.pdf',
+    methodologyNotes: '21.4 million employee and contractor hours logged. Zero serious safety incidents.',
+    reviewComment: 'Approved by Head of EHS on 2026-09-06.',
+    isOutlier: false
+  },
+  {
+    id: 'REQ-2026-090',
+    framework: 'TCFD',
+    metricCode: 'TCFD-MET-C',
+    metricName: 'Internal Shadow Carbon Price Application to Server CapEx Budget',
+    pillar: 'Environmental',
+    assignedTo: 'Sneha Kulkarni',
+    assignedRole: 'FP&A Sustainability Partner',
+    businessUnit: 'All BUs (Consolidated)',
+    status: 'Pending',
+    reportingPeriod: 'FY 2026-27 Budget Cycle',
+    dueDate: '2026-11-01',
+    daysRemaining: 38,
+    unitOfMeasure: 'USD ($/tCO2e) & Capital Reallocated (₹ Cr)',
+    description: 'Application of $45/tCO2e shadow carbon price hurdle rate on all datacenter hardware replacement capital requests.',
+    methodologyRequirement: 'TCFD Metrics & Targets guidance for internal carbon pricing mechanisms.',
+    historicalValue: '$40/tCO2e shadow price in FY24',
+    expectedRange: '$45 - $60/tCO2e',
+    isOutlier: false
+  }
+];
